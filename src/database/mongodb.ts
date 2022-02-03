@@ -1,24 +1,26 @@
-import * as Mongoose from "mongoose"
+import moongoose from "mongoose"
 import * as config from "../config/configVars"
 
-let database: Mongoose.Connection
+// let database: moongoose.Connection
 export const connect = () => {
-	if (database) {
-		return
-	}
-	Mongoose.connect(config.mongodbURI)
-	Mongoose.connect(config.mongodbURI)
-	database = Mongoose.connection
-	database.once("open", async () => {
-		console.log("Connected to database")
-	})
-	database.on("error", () => {
-		console.log("Error connecting to database")
-	})
+	// if (database) {
+	// 	return
+	// }
+	moongoose
+		.connect(config.mongodbURI)
+		.then(() => console.log(`Connected DB`))
+		.catch((err) => console.log(err))
+	// database = moongoose.connection
+	// database.once("open", async () => {
+	// 	console.log("Connected to database")
+	// })
+	// database.on("error", () => {
+	// 	console.log("Error connecting to database")
+	// })
 }
-export const disconnect = () => {
-	if (!database) {
-		return
-	}
-	Mongoose.disconnect()
-}
+// export const disconnect = () => {
+// 	if (!database) {
+// 		return
+// 	}
+// 	moongoose.disconnect()
+// }
