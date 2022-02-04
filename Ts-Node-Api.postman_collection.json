@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "dad63e35-d12c-468c-9c37-237d7c4d767e",
+		"name": "Ts-Node-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Sneha\",\r\n    \"email\":\"sneha@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/create",
+					"host": ["{{local}}"],
+					"path": ["api", "create"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/users",
+					"host": ["{{local}}"],
+					"path": ["api", "users"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Shiv\",\r\n    \"email\":\"shiv@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/update/61fd77d099be17d4a65fe3c9",
+					"host": ["{{local}}"],
+					"path": ["api", "update", "61fd77d099be17d4a65fe3c9"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/remove/61fd77d099be17d4a65fe3c9",
+					"host": ["{{local}}"],
+					"path": ["api", "remove", "61fd77d099be17d4a65fe3c9"]
+				}
+			},
+			"response": []
+		}
+	]
+}
