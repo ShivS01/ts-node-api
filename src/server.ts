@@ -1,17 +1,17 @@
 /**
  * Required External Modules
  */
-import express from "express"
+import express, { Router } from "express"
 import cors from "cors"
 import * as logger from "./utils/logger"
-import { dataRouter } from "./controller/dataRoute"
+import serviceRoute from "./services/"
 import { errorHandler } from "./middleware/errorMiddlerware"
 import { notFoundHandler } from "./middleware/notFoundMiddleware"
 import * as config from "./config/configVars"
 import { requestLogger } from "./middleware/requestLogger"
 import * as db from "./database/mongodb"
 // Intializing and configuring express app
-
+import http from "http"
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -29,7 +29,7 @@ db.connect()
 app.use(requestLogger)
 
 // Routes setup
-app.use("/api/", dataRouter)
+app.use("/api/", serviceRoute)
 
 // Error Handler middleware
 app.use(errorHandler)
