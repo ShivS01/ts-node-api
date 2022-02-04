@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express"
-import * as logger from "../utils/logger"
+import logger from "../utils/logger"
 
-export const requestLogger = (request: Request, response: Response, next: NextFunction) => {
+// replace with winston or other logger later.
+const requestLogger = (request: Request, response: Response, next: NextFunction) => {
 	logger.info("---")
 	logger.info("Method:", request.method)
 	logger.info("Path:  ", request.path)
@@ -9,3 +10,4 @@ export const requestLogger = (request: Request, response: Response, next: NextFu
 	logger.info("---")
 	next()
 }
+export default requestLogger

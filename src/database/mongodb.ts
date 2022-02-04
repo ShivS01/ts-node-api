@@ -1,8 +1,8 @@
 import moongoose from "mongoose"
-import * as config from "../config/configVars"
+import config from "../config/configVars"
 
 // let database: moongoose.Connection
-export const connect = () => {
+const connect = () => {
 	// if (database) {
 	// 	return
 	// }
@@ -24,3 +24,5 @@ export const connect = () => {
 // 	}
 // 	moongoose.disconnect()
 // }
+
+export default { connect }
