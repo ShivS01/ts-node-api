@@ -13,7 +13,7 @@ const updateUser = async (req: Request): Promise<Object> => {
 	let userId: string = req.params.id
 	let userData: UserDocument = req.body
 	return await User.findByIdAndUpdate(userId, userData).then((obj) => {
-		let updatedUser = { id: userId, ...userData }
+		let updatedUser = { ...userData, id: userId }
 		return updatedUser
 	})
 }
