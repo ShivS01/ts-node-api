@@ -1,7 +1,7 @@
 import { Router } from "express"
 import logger from "../../utils/logger"
 import userController from "./userController"
-import genericHandler from "./userUtil"
+import genericHandler from "../../utils/routeUtil"
 
 const userRouter = Router()
 const routeConfig: {
