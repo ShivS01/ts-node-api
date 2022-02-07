@@ -6,7 +6,7 @@ import errorMiddleware from "./middleware/errorMiddlerware"
 import notFoundMiddleware from "./middleware/notFoundMiddleware"
 import config from "./config/configVars"
 import requestLogger from "./middleware/requestLogger"
-import db from "./database/mongodb"
+import db from "./database/mongodbService"
 
 // Intializing and configuring express app
 const app = express()
