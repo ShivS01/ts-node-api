@@ -1,62 +1,39 @@
-import { NextFunction, Request, Response, Router } from "express"
-import { ObjectId } from "mongoose"
+import { Router } from "express"
+import logger from "../../utils/logger"
 import userController from "./userController"
+import genericHandler from "./userUtil"
 
 const userRouter = Router()
-const routeConfig = {
-	getAllUsers: {
+const routeConfig: {
+	path: string
+	method: "get" | "post" | "delete" | "put"
+	handler: Function
+}[] = [
+	{
 		path: "/users",
 		method: "get",
 		handler: userController.getUsers,
 	},
-	createUser: {
+	{
 		path: "/create",
 		method: "post",
 		handler: userController.createUser,
 	},
-	updateUser: {
+	{
 		path: "/update/:id",
-		method: "post",
+		method: "put",
 		handler: userController.updateUser,
 	},
-	deleteUser: {
+	{
 		path: "/remove/:id",
-		method: "post",
+		method: "delete",
 		handler: userController.deleteUser,
 	},
-}
+]
 
-userRouter.get(
-	routeConfig.getAllUsers.path,
-	async (req: Request, res: Response, next: NextFunction) => {
-		let data = await userController.getUsers().catch((err) => next(err))
-		res.json(data)
-	}
-)
-
-userRouter.post(
-	routeConfig.createUser.path,
-	async (req: Request, res: Response, next: NextFunction) => {
-		let createdUser = await userController.createUser(req.body).catch((err) => next(err))
-		res.json(createdUser)
-	}
-)
-
-userRouter.put(
-	routeConfig.updateUser.path,
-	async (req: Request, res: Response, next: NextFunction) => {
-		let id: ObjectId = Object(req.params.id)
-		let updatedUser = await userController.updateUser(id, req.body).catch((err) => next(err))
-		res.json(updatedUser)
-	}
-)
-
-userRouter.delete(
-	routeConfig.deleteUser.path,
-	async (req: Request, res: Response, next: NextFunction) => {
-		let msg = await userController.deleteUser(Object(req.params.id)).catch((err) => next(err))
-		res.send(msg)
-	}
-)
+routeConfig.map((route) => {
+	userRouter[`${route.method}`](route.path, genericHandler(route.handler))
+	logger.info(`HTTP ${route.method} route active`)
+})
 
 export default userRouter
