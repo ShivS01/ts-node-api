@@ -1,11 +1,17 @@
-import { model, Schema } from "mongoose"
+import mongoose, { ObjectId } from "mongoose"
 
-interface User {
+export interface UserInput {
 	name: string
 	email: string
 }
 
-const userSchema = new Schema<User>({
+export interface UserDocument extends UserInput, mongoose.Document {
+	id: ObjectId
+	createdAt: Date
+	updatedAt: Date
+}
+
+const userSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	email: { type: String, required: true },
 })
@@ -20,4 +26,4 @@ userSchema.set("toJSON", {
 	},
 })
 
-export default model("User", userSchema)
+export default mongoose.model<UserDocument>("User", userSchema)
