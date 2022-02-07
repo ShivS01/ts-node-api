@@ -6,7 +6,7 @@ export interface UserInput {
 }
 
 export interface UserDocument extends UserInput, mongoose.Document {
-	id: ObjectId
+	id: string
 	createdAt: Date
 	updatedAt: Date
 }
